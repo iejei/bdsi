@@ -1,0 +1,11 @@
+*.iml
+.idea/
+target/
+.idea/vcs.xml
+dependency-reduced-pom.xml
+*.log
+*/seg0/
+*/log*
+*.lck
+*service.properties
+*README_DO_NOT_TOUCH_FILES.txt
