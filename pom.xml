@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.fslu.bigdata</groupId>
+  <artifactId>zma_bdsi</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+
+  <name>zma_bdsi</name>
+  <url>http://www.example.com</url>
+
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.4.RELEASE</version>
+    <relativePath/>
+  </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+
+    <!-- project configuration -->
+    <mysql.jdbc.url></mysql.jdbc.url>
+    <mysql.jdbc.username></mysql.jdbc.username>
+    <mysql.jdbc.password></mysql.jdbc.password>
+
+    <hive.jdbc.url></hive.jdbc.url>
+    <hive.jdbc.username></hive.jdbc.username>
+    <hive.jdbc.password></hive.jdbc.password>
+
+    <presto.jdbc.url></presto.jdbc.url>
+    <presto.jdbc.username></presto.jdbc.username>
+    <presto.jdbc.password></presto.jdbc.password>
+
+    <jdbc.pool.init>1</jdbc.pool.init>
+    <jdbc.pool.minIdle>3</jdbc.pool.minIdle>
+    <jdbc.pool.maxActive>10</jdbc.pool.maxActive>
+    <!--<template.js.path></template.js.path>-->
+
+    <mybatis-spring-boot>1.2.0</mybatis-spring-boot>
+    <mysql-connector>5.1.39</mysql-connector>
+    <druid>1.0.18</druid>
+
+  </properties>
+  <profiles>
+    <profile>
+      <id>prod</id>
+      <properties>
+        <master.datasource.url>jdbc:mysql://sh-cdb-ncocuxkf.sql.tencentcdb.com:63196/xxx?useUnicode=true&amp;characterEncoding=utf-8</master.datasource.url>
+        <master.datasource.username>tongjitest</master.datasource.username>
+        <master.datasource.password>Aa4iep5ne~uv</master.datasource.password>
+        <mysql.datasource.driverClassName>com.mysql.jdbc.Driver</mysql.datasource.driverClassName>
+
+        <bus.datasource.url>jdbc:mysql://211.159.215.14:63196/xxx?useUnicode=true&amp;characterEncoding=utf-8</bus.datasource.url>
+        <bus.datasource.username>service_bustest</bus.datasource.username>
+        <bus.datasource.password>tee7xoolieY=</bus.datasource.password>
+
+        <game.datasource.url>jdbc:mysql://127.0.0.1:3315/xxxx?useUnicode=true&amp;characterEncoding=utf-8</game.datasource.url>
+        <game.datasource.username>reader</game.datasource.username>
+        <game.datasource.password>q7y8uexhJCG2</game.datasource.password>
+
+        <presto.jdbc.url>url</presto.jdbc.url>
+        <presto.jdbc.username>xxx</presto.jdbc.username>
+        <presto.jdbc.password>xxx</presto.jdbc.password>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>dev</id>
+      <activation><activeByDefault>true</activeByDefault></activation>
+      <properties>
+        <master.datasource.url>jdbc:mysql://sh-cdb-ncocuxkf.sql.tencentcdb.com:63196/xxx?useUnicode=true&amp;characterEncoding=utf-8</master.datasource.url>
+        <master.datasource.username>tongjitest</master.datasource.username>
+        <master.datasource.password>Aa4iep5ne~uv</master.datasource.password>
+        <mysql.datasource.driverClassName>com.mysql.jdbc.Driver</mysql.datasource.driverClassName>
+
+        <bus.datasource.url>jdbc:mysql://211.159.215.14:63196/xxx?useUnicode=true&amp;characterEncoding=utf-8</bus.datasource.url>
+        <bus.datasource.username>service_bustest</bus.datasource.username>
+        <bus.datasource.password>tee7xoolieY=</bus.datasource.password>
+
+        <game.datasource.url>jdbc:mysql://127.0.0.1:3315/xxxx?useUnicode=true&amp;characterEncoding=utf-8</game.datasource.url>
+        <game.datasource.username>reader</game.datasource.username>
+        <game.datasource.password>q7y8uexhJCG2</game.datasource.password>
+
+        <presto.jdbc.url>url</presto.jdbc.url>
+        <presto.jdbc.username>xxx</presto.jdbc.username>
+        <presto.jdbc.password>xxx</presto.jdbc.password>
+      </properties>
+    </profile>
+  </profiles>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+      <version>1.5.4.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <!--<scope>provided</scope>-->
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.1.36</version>
+    </dependency>
+
+    <!--<dependency>-->
+    <!--<groupId>org.spark-project.hive</groupId>-->
+    <!--<artifactId>hive-jdbc</artifactId>-->
+    <!--<version>1.2.1.spark2</version>-->
+    <!--</dependency>-->
+
+    <dependency>
+      <groupId>com.facebook.presto</groupId>
+      <artifactId>presto-jdbc</artifactId>
+      <version>0.212</version>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql-connector}</version>
+    </dependency>
+
+    <!-- Spring Boot Mybatis 依赖 -->
+    <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>${mybatis-spring-boot}</version>
+    </dependency>
+    <!-- Druid 数据连接池依赖 -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>${druid}</version>
+    </dependency>
+    <!--分页插件-->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper-spring-boot-starter</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.2.0</version>
+    </dependency>
+
+    <!--POI  解析表格数据-->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.9</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.9</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <finalName>zma-bdsi</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+    <!--<plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              &lt;!&ndash; 启动主函数 &ndash;&gt;
+              <mainClass>com.***.app.Application</mainClass>
+            </manifest>
+          </archive>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+          <compilerArguments>
+            <extdirs>src\main\lib</extdirs>
+          </compilerArguments>
+        </configuration>
+      </plugin>
+    </plugins>-->
+  </build>
+</project>
